@@ -22,7 +22,7 @@ const MovieList = ({ movies }) => {
         {filteredMovies.length > 0 ? (
           filteredMovies.map((movie) => <MovieCard key={movie.id} movie={movie} />)
         ) : (
-          <p>No movies found</p>
+          <p>No movies found🤔</p>
         )}
       </div>
     </div>
