@@ -1,6 +1,5 @@
 import { movies } from "../data/movies.js";
 import MovieList from "../components/MovieList.jsx";
-import "../App.css";
 
 function Home() {
   return (

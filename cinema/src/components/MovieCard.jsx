@@ -5,12 +5,14 @@ function MovieCard ({ movie }) {
       <div className="movie-card">
         <img src={movie.poster} alt={movie.title} />
         <h3>{movie.title}</h3>
-        <p>{movie.description}</p>
+        <p><strong>Description:</strong> {movie.description}</p>
         <p><strong>Genre:</strong> {movie.genre}</p>
         <p><strong>Showtime:</strong> {movie.showtime}</p>
-        <Link to={`/booking/${movie.id}`}>
-          <button>Забронювати</button>
-      </Link>
+        <div className="card-footer">
+          <Link to={`/booking/${movie.id}`}>
+            <button className="booking-button">Reserve</button>
+          </Link>
+        </div>
       </div>
     );
   };

@@ -1,7 +1,6 @@
 /* Загальні стилі */
 body {
   font-family: Arial, sans-serif;
-  background-color: #1a1a1a;
   color: #fff;
   text-align: center;
   justify-content: center;
@@ -36,10 +35,36 @@ body {
 
 /* Оформлення картки фільму */
 .movie-card {
-  background: #292929;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
   padding: 15px;
-  border-radius: 10px;
-  transition: transform 0.2s, box-shadow 0.2s;
+  background: #333;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-footer {
+  margin-top: auto;
+  text-align: center;
+}
+
+.booking-button {
+  width: 100%;
+  padding: 10px;
+  background-color: rgb(36, 38, 36);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.booking-button:hover {
+  background-color: rgb(36, 82, 24);
 }
 
 .movie-card img {
@@ -54,13 +79,20 @@ body {
 
 .movie-card p {
   font-size: 14px;
-  color: #ccc;
+  border-radius: 8px;
+  text-align: left;
+}
+
+.movie-card strong {
+  font-size: 13px;
+  color: #ffffff;
 }
 
 /* Ефекти при наведенні */
 .movie-card:hover {
   transform: scale(1.05);
   box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
+  background: #1a1a1a;
 }
 
 /* Пошуковий інпут */
@@ -128,4 +160,21 @@ body {
 
 .seat.selected {
   background-color: blue;
+}
+
+.home-button {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: rgb(62, 59, 56);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.home-button:hover {
+  background-color: rgb(88, 87, 86);
 }
