@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
-import CinemaHall from "../components/CinemaHall";
-import movies from "../data/movies";
+import CinemaHall from "../components/CinemaHall.jsx";
+import { movies } from "../data/movies.js";
 
 function Booking() {
   const { id } = useParams();
