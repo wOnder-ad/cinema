@@ -146,9 +146,10 @@ body {
 
 .cinema-hall {
   display: grid;
+  grid-template-columns: repeat(6, 1fr);
   gap: 10px;
-  padding: 20px;
-  justify-content: center;
+  max-width: 300px;
+  margin: 20px auto;
 }
 
 .row {
@@ -159,18 +160,51 @@ body {
 .seat {
   width: 40px;
   height: 40px;
-  margin: 5px;
-  background-color: green;
-  border-radius: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 1px solid #ccc;
   cursor: pointer;
-  transition: 0.3s;
+  border-radius: 5px;
 }
 
-.seat.selected {
+.available {
+  background-color: green;
+}
+
+.selected {
   background-color: blue;
+}
+
+.booked {
+  background-color: red;
+  cursor: not-allowed;
+}
+
+.booking-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  margin: auto;
+}
+
+.booking-form input {
+  margin-bottom: 10px;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.booking-form button {
+  padding: 10px;
+  background-color: orange;
+  border: none;
+  cursor: pointer;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
 }
 
 .home-button {
