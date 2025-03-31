@@ -109,6 +109,17 @@ body {
 }
 
 /* Адаптивність */
+
+@media (max-width: 1024px) {
+  .movie-list {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+  .seat {
+    width: 30px;
+    height: 30px;
+  }
+}
+
 @media (max-width: 768px) {
   .movie-list {
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
