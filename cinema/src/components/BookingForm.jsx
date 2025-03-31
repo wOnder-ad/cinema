@@ -8,10 +8,26 @@ const BookingForm = ({ movieId, selectedSeats, onBookingSuccess }) => {
 
   const validateForm = () => {
     const newErrors = {};
-    if (!form.name) newErrors.name = "Ім'я обов'язкове";
-    if (!form.phone) newErrors.phone = "Телефон обов'язковий";
-    if (!form.email) newErrors.email = "Email обов'язковий";
-    else if (!/\S+@\S+\.\S+/.test(form.email)) newErrors.email = "Некоректний email";
+
+    if (!form.name) {
+      newErrors.name = "Ім'я обов'язкове";
+    } else if (form.name.length > 10) {
+      newErrors.name = "Ім'я повинно містити максимум 10 символів";
+    }
+
+    if (!form.phone) {
+      newErrors.phone = "Телефон обов'язковий";
+    } else if (!/^\d+$/.test(form.phone)) {
+      newErrors.phone = "Телефон може містити тільки цифри";
+    } else if (form.phone.length < 10 || form.phone.length > 15) {
+      newErrors.phone = "Телефон повинен містити 10-15 цифр";
+    }
+
+    if (!form.email) {
+      newErrors.email = "Email обов'язковий";
+    } else if (!/\S+@\S+\.\S+/.test(form.email)) {
+      newErrors.email = "Некоректний email";
+    }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
