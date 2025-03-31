@@ -27,7 +27,9 @@ const BookingForm = ({ movieId, selectedSeats, onBookingSuccess }) => {
       newErrors.email = "Email обов'язковий";
     } else if (!/\S+@\S+\.\S+/.test(form.email)) {
       newErrors.email = "Некоректний email";
-    }
+    } else if (form.name.length > 25) {
+        newErrors.name = "Не быльше 25 символів!";
+      }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
