@@ -1,38 +1,54 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import BookingService from "../services/BookingService.js";
+import BookingForm from "./BookingForm.jsx";
+import { useParams } from "react-router-dom";
 
-const rows = 5;
-const cols = 8;
-
-function CinemaHall() {
+const CinemaHall = () => {
+  const { id: movieId } = useParams();
   const [selectedSeats, setSelectedSeats] = useState([]);
+  const [bookedSeats, setBookedSeats] = useState([]);
 
-  const toggleSeat = (row, col) => {
-    const seatId = `${row}-${col}`;
+  useEffect(() => {
+    setBookedSeats(BookingService.getBookedSeats(movieId));
+  }, [movieId]);
+
+  const toggleSeat = (seat) => {
+    if (bookedSeats.includes(seat)) return;
+
     setSelectedSeats((prev) =>
-      prev.includes(seatId) ? prev.filter((s) => s !== seatId) : [...prev, seatId]
+      prev.includes(seat) ? prev.filter((s) => s !== seat) : [...prev, seat]
     );
   };
 
   return (
-    <div className="cinema-hall">
-      {Array.from({ length: rows }, (_, row) => (
-        <div key={row} className="row">
-          {Array.from({ length: cols }, (_, col) => {
-            const seatId = `${row}-${col}`;
-            return (
-              <div
-                key={seatId}
-                className={`seat ${selectedSeats.includes(seatId) ? "selected" : ""}`}
-                onClick={() => toggleSeat(row, col)}
-              >
-                {col + 1}
-              </div>
-            );
-          })}
-        </div>
-      ))}
+    <div>
+      <div className="cinema-hall">
+        {[...Array(30)].map((_, i) => {
+          const seat = i + 1;
+          const isBooked = bookedSeats.includes(seat);
+          const isSelected = selectedSeats.includes(seat);
+
+          return (
+            <div
+              key={seat}
+              className={`seat ${isBooked ? "booked" : isSelected ? "selected" : "available"}`}
+              onClick={() => toggleSeat(seat)}
+            >
+              {seat}
+            </div>
+          );
+        })}
+      </div>
+
+      {selectedSeats.length > 0 && (
+        <BookingForm
+          movieId={movieId}
+          selectedSeats={selectedSeats}
+          onBookingSuccess={() => setSelectedSeats([])}
+        />
+      )}
     </div>
   );
-}
+};
 
 export default CinemaHall;
